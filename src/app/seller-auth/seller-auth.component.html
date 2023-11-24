@@ -1,0 +1,28 @@
+<!-- <p>seller-auth works!</p> -->
+
+<div class="seller-auth">
+    <div class="example-container">
+        <h1 align="center">Seller Sign-Up</h1>
+        <form #sellerSignUp="ngForm" (ngSubmit)="SignUpSubmit(sellerSignUp.value)">
+        <mat-form-field>
+            <mat-label>Input</mat-label>
+            <input matInput ngModel name ="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput ngModel name="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <!-- ! learn how to validate email having formcontrol only while other input field doesn't have formcoontrol-->
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput ngModel name="email" placeholder="pat@example.com"  required>
+            <!-- <div *ngIf="email.invalid"> <mat-error>{{getErrorMessage()}}</mat-error></div> -->  <!-- ? this method need to tested --> 
+        </mat-form-field>
+        <button type="submit" class="button-position" mat-raised-button color="primary">Submit</button>
+    </form>
+    </div>
+</div>

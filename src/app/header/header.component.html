@@ -1,0 +1,32 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/">Home</button>
+      <button mat-menu-item routerLink="/seller-auth">Seller</button>
+      <button mat-menu-item>Cart</button>
+    </mat-menu>
+
+    <span class="example-spacer"></span>
+    <!-- <mat-label>Search for products </mat-label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+    <input matInput class="matInput" placeholder="Search for products" name="searchForProducts" />
+    <button mat-icon-button class="example-icon favorite-icon">
+        <mat-icon>search</mat-icon>
+    </button>
+
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon">
+      <mat-icon>login</mat-icon>
+    </button>
+
+    <button mat-icon-button class="example-icon favorite-icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+
+    <button mat-icon-button class="example-icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, NgForm, Validators} from '@angular/forms';
 import { SellerService } from '../Services/seller.service';
 import { Router } from '@angular/router';
-import { SignUp } from '../data-type';
+import { Login, SignUp } from '../data-type';
 
 @Component({
   selector: 'app-seller-auth',
@@ -10,8 +10,11 @@ import { SignUp } from '../data-type';
   styleUrls: ['./seller-auth.component.css'],
 })
 export class SellerAuthComponent {
+
   
   hide = true;
+  showLogin = false;
+  authError : string = '';
   //email = new FormControl('', [Validators.required, Validators.email]); 
 
   constructor(private seller : SellerService , private router : Router){}
@@ -40,4 +43,18 @@ export class SellerAuthComponent {
 
   //   return this.email.hasError('email') ? 'Not a valid email' : '';
   // }
+
+  openlogin():void {
+    this.showLogin=!this.showLogin;
+    //throw new Error('Method not implemented.');
+    }
+
+    Login(data:Login) :void{
+    this.seller.userLogin(data);  
+    this.seller.isLoginError.subscribe((isError) => {
+      if(isError){
+        this.authError="Email or password is not correct";
+      }
+    })
+    }
 }

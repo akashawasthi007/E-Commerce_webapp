@@ -1,24 +1,32 @@
 <p>
-  <mat-toolbar color="primary">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-toolbar  color="primary">
+    <button   mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <div >
+    <mat-menu [ngSwitch]="menuType" #menu="matMenu">
       <button mat-menu-item routerLink="/">Home</button>
-      <button mat-menu-item routerLink="/seller-auth">Seller</button>
-      <button mat-menu-item>Cart</button>
+      <button *ngSwitchCase="'default'" mat-menu-item routerLink="/seller-auth">Seller</button>
+      <button *ngSwitchCase="'default'" mat-menu-item>Cart</button>
+      <button *ngSwitchCase="'seller'" mat-menu-item routerLink="/">Product List</button>
+      <button *ngSwitchCase="'seller'" mat-menu-item routerLink="/seller-auth"> Add Product</button>
+      <button *ngSwitchCase="'seller'" mat-menu-item>{{sellerName}}</button>
     </mat-menu>
-
+  </div>
+    
     <span class="example-spacer"></span>
     <!-- <mat-label>Search for products </mat-label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-    <input matInput class="matInput" placeholder="Search for products" name="searchForProducts" />
-    <button mat-icon-button class="example-icon favorite-icon">
+    <input *ngIf="menuType=='default'" matInput class="matInput" placeholder="Search for products" name="searchForProducts" />
+    <button *ngIf="menuType=='default'" mat-icon-button class="example-icon favorite-icon">
         <mat-icon>search</mat-icon>
     </button>
 
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon">
+    <button *ngIf="menuType=='default'" mat-icon-button class="example-icon favorite-icon">
       <mat-icon>login</mat-icon>
+    </button>
+    <button *ngIf="menuType=='seller'" (click)="logout()" mat-icon-button class="example-icon favorite-icon">
+      <mat-icon >logout</mat-icon>
     </button>
 
     <button mat-icon-button class="example-icon favorite-icon">
